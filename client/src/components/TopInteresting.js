@@ -78,14 +78,14 @@ const TopInteresting = () => {
 
   return (
     <div>
-      <section className="h-[100vh] mt-20 relative">
+      <section className="h-[100vh] mt-20 relative px-2">
         <div>
           <Toaster position="top-center" reverseOrder={false} />
         </div>
         <p className="text-center text-3xl font-semibold mb-6">
           TOP INTERESTING
         </p>
-        <p className="m-auto text-center w-[40%] rufina1 mb-6">
+        <p className="m-auto text-center md:w-[50%] lg:w-[40%] rufina1 mb-6">
           Browse the collection of our best-selling and top interesting
           products. You'll definitely find what you are looking for.
         </p>

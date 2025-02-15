@@ -11,6 +11,7 @@ export function LoginConextProvider({ children }) {
 
   // Load token from cookies on initial render
   useEffect(() => {
+    console.log("this is auth ", auth);
     const token = Cookies.get("authToken");
     if (token) {
       setAuth({
@@ -21,6 +22,8 @@ export function LoginConextProvider({ children }) {
   }, []);
 
   const login = (token) => {
+    console.log("Token retrieved from cookies:", token);
+
     Cookies.set("authToken", token);
     setAuth({
       isLoggedIn: true,

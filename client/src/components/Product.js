@@ -20,6 +20,7 @@ const Product = () => {
   const { id } = useParams();
 
   const { allBooks, getAllProducts } = useContext(ProductContext);
+  console.log("this is book Data", allBooks);
 
   const [booksDetails, setBooksDetails] = useState(null);
   const [bookGenre, setGenre] = useState("");
@@ -28,7 +29,10 @@ const Product = () => {
 
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart);
-  // console.log("this is cart detials", cartData[0].quantity);
+  console.log("this is booksDetails detials", booksDetails);
+  const [swapedImage, setSwapImage] = useState("");
+  const [mainImage, setMainImage] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     // getAllProducts();
@@ -36,35 +40,57 @@ const Product = () => {
     setGenre(booksData[0].genre);
 
     setBooksDetails(books);
+    setSwapImage(books);
+    setMainImage(books);
   }, [id, allBooks]);
   if (!booksDetails) {
     return;
   }
 
+  const swapImages = () => {
+    setToggle(!toggle);
+    const imageChange1 = booksDetails.image2;
+    const imageChange2 = booksDetails.image;
+
+    setSwapImage(imageChange1);
+    setMainImage(imageChange2);
+  };
+
+  console.log("this is imageChange is coming", swapedImage);
+
   return (
-    <div className="flex pt-20  px-10">
+    <div className="flex flex-col lg:flex-row pt-20  px-10">
       <div>
         <Toaster position="top-center" reverseOrder={false} />
       </div>
       {/* Product div  */}
-      <div className="w-3/4 ">
-        <div className="flex">
+      <div className="lg:w-3/4 ">
+        <div className="flex flex-col md:flex-row lg:flex-row">
           {/* Image section  */}
-          <div className=" w-1/2  flex flex-col justify-center items-center">
+          <div className=" md:w-1/2  flex flex-col justify-center items-center">
             <div>
-              <img src={booksDetails.image} width={300} />
+              <img
+                src={toggle ? swapedImage : booksDetails.image}
+                width={300}
+              />
             </div>
 
-            <div className="">
-              <img src={booksDetails.image2} width={100} />
+            <div className="" onClick={() => swapImages()}>
+              <img
+                src={toggle ? mainImage : booksDetails.image2}
+                width={100}
+                className="cursor-pointer"
+              />
             </div>
           </div>
           {/* Description Section  */}
-          <div className="w-1/2 flex flex-col gap-5 relative ">
-            <p className="text-4xl rufina1">{booksDetails.title}</p>
+          <div className="md:w-1/2 flex flex-col gap-5 relative ">
+            <p className="text-2xl md:text-3xl lg:text-4xl rufina1">
+              {booksDetails.title}
+            </p>
             <p>In Stock</p>
-            <div className="flex items-center gap-2 ">
-              <Stars stars={booksDetails.rating} />
+            <div className="flex flex-col md:flex-row lg:flex-row items-center gap-2 ">
+              <Stars stars={booksDetails.stars} />
               <p>{booksDetails.reviews} Reviews</p>
               <a
                 onClick={() => setIsReview(!isReview)}
@@ -87,8 +113,8 @@ const Product = () => {
               </p>
               <p className="line-through text-2xl">₹399.00</p>
             </div>
-            <div className="flex gap-5">
-              <div className="border border-black flex items-center justify-between w-20">
+            <div className="flex flex-col md:flex-row lg:flex-row gap-5">
+              <div className="border border-black flex items-center justify-between w-full px-2 md:w-20 lg:w-20">
                 {/* <Counter
                   counter={cartData[0] ? cartData[0].quantity : 0}
                   productId={cartData.productId}
@@ -149,16 +175,16 @@ const Product = () => {
           </div>
         </div>
         {/* Reviews Section  */}
-        <div className="mt-20 bg-slate-100 overflow-y-auto h-96">
-          <p className="text-3xl">Reviews</p>
-          <ul className="flex flex-col gap-4 my-6 ">
+        <p className="text-3xl">Reviews</p>
+        <div className="mt-10 bg-slate-100 overflow-y-auto h-96">
+          <ul className="flex flex-col gap-4  my-6 ">
             {booksDetails?.reviewsContent &&
             Array.isArray(booksDetails.reviewsContent) &&
             booksDetails.reviewsContent.length > 0 ? (
               booksDetails.reviewsContent.map((item, index) => (
-                <li className="flex flex-col gap-1" key={index}>
-                  <div className="flex items-center gap-2">
-                    <p className="text-xl">{item.username}</p>
+                <li className="flex flex-col gap-1 " key={index}>
+                  <div className="flex flex-col  md:flex-row lg:flex-row lg:items-center gap-2 ">
+                    <p className="text-xl ">{item.username}</p>
                     <Stars stars={item.stars} />
                   </div>
                   <p>{item.review}</p>
@@ -171,15 +197,18 @@ const Product = () => {
         </div>
       </div>
       {/* Related Products div  */}
-      <div className="w-1/4">
-        <p className="text-lg font-medium">RELATED PRODUCTS</p>
+      <div className=" lg:w-1/4">
+        <p className="text-lg font-extrabold">RELATED PRODUCTS</p>
         <div className="overflow-y-auto h-1/4">
           {booksData
             .filter((item) => item.genre == bookGenre)
             .map((item, index) => (
-              <div className="flex items-center cursor-pointer" key={index}>
+              <div
+                className="flex flex-col md:flex-row lg:flex-row items-center cursor-pointer"
+                key={index}
+              >
                 <div>
-                  <img src={item.image} width={70} />
+                  <img src={item.image} className="w-32 md:w-20 lg:w-20" />
                 </div>
                 <div>
                   <Stars stars={item.rating} />
@@ -197,13 +226,3 @@ const Product = () => {
 };
 
 export default Product;
-
-// {booksDetails.reviewsContent.map((item, index) => (
-//   <li className="flex flex-col gap-1" key={index}>
-//     <div className="flex items-center gap-2">
-//       <p className="text-xl">{item.username}</p>
-//       <Stars stars={item.stars} />
-//     </div>
-//     <p>{item.review}</p>
-//   </li>
-// ))}

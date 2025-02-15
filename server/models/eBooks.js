@@ -9,13 +9,18 @@ const eBookSchema = {
     type: String,
     required: true,
   },
-  imageUrl: {
+  price: {
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+  },
+  imageFile: {
+    type: String,
+  },
   link: {
     type: String,
-    required: true,
   },
   description: {
     type: String,

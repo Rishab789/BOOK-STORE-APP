@@ -50,7 +50,7 @@ const TopBar = () => {
             roles ? "visible" : "hidden"
           }`}
         >
-          Dashborad
+          Dashboard
         </span>
         <a href="/myaccount" className="hover:text-secondary-color text-sm">
           My Account

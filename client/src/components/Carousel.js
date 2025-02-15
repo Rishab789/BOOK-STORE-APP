@@ -18,28 +18,28 @@ const Carousel = ({ data }) => {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden h-[400px] sm:h-[500px] md:h-[650px] lg:h-screen bg-green-200 w-full ">
       <div
-        className="flex transition-transform duration-1000 ease-in-out"
+        className="flex transition-transform duration-1000 ease-in-out "
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {data.map((item, index) => {
+        {/* {data.map((item, index) => {
           return <img src={item.src} alt={item.alt} key={index} />;
-        })}
+        })} */}
       </div>
       {/* conditional index  */}
       {currentIndex == 0 && (
         <div className="absolute left-20 top-[25%]  flex flex-col  items-center">
-          <p className="rufina1 text-5xl md:text-7xl mb-3 text-white first_title_animation">
+          <p className="rufina1 text-3xl sm:text-5xl md:text-7xl mb-3 text-white first_title_animation">
             Huge Sale
           </p>
-          <p className="rufina2 text-4xl md:text-8xl mb-3 second_title_animation">
+          <p className="rufina2 text-2xl sm:text-4xl md:text-8xl mb-3 second_title_animation">
             Koparion
           </p>
           <p className="rufina1 text-xl md:text-2xl mb-10 third_title_animation">
             Now Starting at $99.00
           </p>
-          <button className="btn btn_animation">Shop now</button>
+          <button className="btn btn_animation bg-red-400">Shop now</button>
         </div>
       )}
       {currentIndex == 1 && (

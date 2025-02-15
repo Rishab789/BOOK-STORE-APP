@@ -4,11 +4,11 @@ import "./StripeBanner.css";
 
 const StripeBanner = () => {
   return (
-    <div className="bg-image  border border-black h-[20vh] m-auto w-[85vw] cursor-pointer  mb-20 relative">
-      <p className="text-white text-xl font-bold absolute left-36 top-2">
+    <div className="    bg-image  border border-black h-[20vh] m-auto w-[85vw] cursor-pointer  mb-20 lg:relative">
+      <p className="text-white text-center text-xl font-bold lg:absolute lg:left-36 lg:top-2">
         G. Meyer Book Depot
       </p>
-      <p className="text-white text-3xl uppercase absolute top-9 left-72 text-black">
+      <p className="text-white text-center text-xl sm:text-2xl md:text-3xl lg:text-3xl uppercase lg:absolute lg:top-9 lg:left-72 ">
         Sale up to 30% off
       </p>
     </div>

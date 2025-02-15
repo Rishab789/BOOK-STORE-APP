@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import Button from "./Button";
 import Counter from "./Counter";
@@ -6,11 +6,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeCartItems } from "../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
-const CartDetails = () => {
-  const cartData = useSelector((state) => state.cart);
-  console.log("data cming from product details", cartData);
+const CartDetails = ({ cartData }) => {
+  // const cartData = useSelector((state) => state.cart);
+  // console.log("data cming from product details", cartData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [price, setPrice] = useState(null);
+
+  const priceCalculate = () => {
+    let getPriceArray = cartData.map((item) => {
+      return parseInt(item.price * item.quantity);
+    });
+
+    console.log(getPriceArray);
+
+    let getVal = getPriceArray.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0);
+    console.log("this is accumulated price ", getVal);
+    setPrice(getVal);
+  };
+
+  useEffect(() => {
+    console.log("this is cart data ", cartData);
+    priceCalculate();
+  }, [cartData]);
 
   // const [counter, setCounter] = useState(1);
 
@@ -69,7 +90,7 @@ const CartDetails = () => {
           </div>
           <div className="flex justify-between my-2">
             <p className="text-2xl">TOTAL</p>
-            <p className="text-2xl text-secondary-color ">₹{200}</p>
+            <p className="text-2xl text-secondary-color ">₹{price}</p>
           </div>
           {/* <button>PROCEED TO CHECKOUT</button> */}
           <Button

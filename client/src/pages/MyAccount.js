@@ -32,12 +32,12 @@ const MyAccount = () => {
 
   return (
     <div className="">
-      <div className="px-14">
+      <div className=" px-1 md:px-12 lg:px-14">
         <p className="text-3xl border-b-2 pt-5">My-Account</p>
         {/* Main Container  */}
-        <div className="flex gap-10 mt-40 mb-36">
+        <div className="flex flex-col md:flex-row lg:flex-row gap-10 mt-40 mb-36">
           {/* Left Container  */}
-          <div className="w-1/4 ">
+          <div className=" md:w-1/4 lg:w-1/4 ">
             <ul className="border flex flex-col ">
               {menu.map((item, index) => (
                 <Link to={item.path}>
@@ -53,7 +53,7 @@ const MyAccount = () => {
             </ul>
           </div>
           {/* right Container  */}
-          <div className="w-3/4 border px-10 py-5">
+          <div className="md:w-3/4 lg:w-3/4 border md:px-10  px-2 lg:px-10 py-5">
             <Outlet />
           </div>
         </div>

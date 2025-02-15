@@ -5,7 +5,7 @@ const About = () => {
     <section className="px-5 md:px-20 lg:px-20 mt-10 ">
       <div className="flex flex-col  md:flex-row lg:flex-row">
         {/* Image  */}
-        <div className="overflow-hidden  h-1/2 md:w-1/2 lg:w-1/2">
+        <div className="overflow-hidden h-1/2 md:w-1/2 lg:w-1/2">
           <img
             src="https://htmldemo.net/koparion/koparion/img/banner/32.jpg"
             alt="About Image"
@@ -14,7 +14,9 @@ const About = () => {
         </div>
         {/* Text  */}
         <div className="md:w-1/2 lg:w-1/2 px-5 ">
-          <p className="text-4xl rufina1">Why We are?</p>
+          <p className="text-2xl md:text-4xl lg:text-4xl rufina1 my-2">
+            Why We are?
+          </p>
           <p className="rufina1">
             Mellentesque faucibus dapibus dapibus. Morbi aliquam aliquet neque.
             Donec placerat dapibus sollicitudin. Morbi arcu nisi, mattis ut

@@ -10,22 +10,22 @@ const Footer = () => {
   return (
     <div className="">
       <section className="bg-[#222222]">
-        <div className="pb-10 p-8">
+        <div className="pb-10 md:p-5 lg:p-8">
           <ul className="text-white  flex  flex-col  md:flex-row   gap-10 container ">
             <div className="flex flex-wrap justify-center gap-3 items-center m-auto md:m-0">
               <li className="">
-                <a href="#" className="pr-5">
+                <a href="#" className="">
                   Home
                 </a>
               </li>
 
               <li className="">
-                <Link to="/contact" className="pr-5">
+                <Link to="/contact" className="">
                   Contact Us
                 </Link>
               </li>
               <li className="">
-                <Link to="/about" className="pr-5">
+                <Link to="/about" className="">
                   About
                 </Link>
               </li>
@@ -35,18 +35,18 @@ const Footer = () => {
                 </Link>
               </li>
             </div>
-            <div className="flex gap-3 m-auto md:m-0">
-              <li className="icon-div">
-                <FaYoutube className="icon" />
+            <div className="flex gap-3  m-auto md:m-0">
+              <li className="">
+                <FaYoutube className="icon text-2xl md:text-3xl lg:text-4xl hover:bg-white hover:text-black hover:rounded-full duration-300 hover:px-1" />
               </li>
-              <li className="icon-div">
-                <FaXTwitter className="icon" />
+              <li className="">
+                <FaXTwitter className="icon text-2xl md:text-3xl lg:text-4xl hover:bg-white hover:text-black hover:rounded-full duration-300 hover:px-1" />
               </li>
-              <li className="icon-div">
-                <FaFacebookSquare className="icon " />
+              <li className="">
+                <FaFacebookSquare className="icon text-2xl md:text-3xl lg:text-4xl hover:bg-white hover:text-black hover:rounded-full duration-300 hover:px-1" />
               </li>
-              <li className="icon-div">
-                <FaInstagram className="icon " />
+              <li className="">
+                <FaInstagram className="icon text-2xl md:text-3xl  lg:text-4xl hover:bg-white hover:text-black hover:rounded-full duration-300 hover:px-1" />
               </li>
             </div>
           </ul>

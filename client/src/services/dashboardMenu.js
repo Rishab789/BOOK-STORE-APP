@@ -6,12 +6,17 @@ import blog_icon from "./../assets/dashboardAssets/blog.png";
 import home_icon from "./../assets/dashboardAssets/home.png";
 import tag_icon from "./../assets/dashboardAssets/tag.png";
 import ebook_icon from "./../assets/dashboardAssets/ebook.png";
-
+import order_icon from "./../assets/dashboardAssets/order.png";
 export const dashMenu = [
   {
     image: dashboard_icon,
     text: "Dashboard",
     path: "dashboardPage",
+  },
+  {
+    image: order_icon,
+    text: "Orders",
+    path: "orders",
   },
   {
     image: upload_icon,

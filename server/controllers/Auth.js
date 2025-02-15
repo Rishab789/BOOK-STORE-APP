@@ -88,10 +88,13 @@ exports.login = async (req, res) => {
       user.password = undefined;
 
       const options = {
-        expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+        // expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + 10 * 1000), // 10 seconds from now
+
         httpOnly: true,
       };
 
+      console.log("this is option ", options);
       res.cookie("token", token, options).status(200).json({
         success: true,
         token,

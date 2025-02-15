@@ -8,9 +8,11 @@ const ProductContextProvider = ({ children }) => {
   const url = process.env.REACT_APP_URL;
 
   const [allBooks, setAllBooks] = useState([]);
+  const [eBooks, setEBooks] = useState([]);
 
   useEffect(() => {
     getAllProducts();
+    getAllEbooks();
   }, []);
 
   const getAllProducts = async () => {
@@ -23,9 +25,20 @@ const ProductContextProvider = ({ children }) => {
     }
   };
 
+  const getAllEbooks = async () => {
+    try {
+      let req = await axios.get(`${url}/api/v1/posts`);
+      setEBooks(req.data.posts);
+    } catch (err) {
+      console.log("Some Error coming while fetching!");
+    }
+  };
+
   const value = {
     allBooks,
     getAllProducts,
+    eBooks,
+    getAllEbooks,
   };
 
   return (

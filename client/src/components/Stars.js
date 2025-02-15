@@ -18,7 +18,11 @@ const Stars = ({ stars }) => {
       </span>
     );
   });
-  return <div className="flex text-secondary-color">{ratingStar}</div>;
+  return (
+    <div className="flex text-secondary-color text-2xl  md:text-xl  lg:text-xl">
+      {ratingStar}
+    </div>
+  );
 };
 
 export default Stars;

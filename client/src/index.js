@@ -32,6 +32,8 @@ import ManageEbook from "./pages/ManageEbook";
 import EBookPage from "./pages/EBookPage";
 import AreYouSure from "./modals/AreYouSure";
 import ProductContextProvider from "./contexts/ProductsContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import Orders from "./pages/Orders";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -127,7 +129,9 @@ const appRouter = createBrowserRouter([
     element: (
       <LoadingProvider>
         <LoginConextProvider>
-          <Dashborad />
+          <ProtectedRoute>
+            <Dashborad />
+          </ProtectedRoute>
         </LoginConextProvider>
       </LoadingProvider>
     ),
@@ -135,6 +139,10 @@ const appRouter = createBrowserRouter([
       {
         path: "dashboardPage",
         element: <DashboardPage />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
       },
       {
         path: "upload",

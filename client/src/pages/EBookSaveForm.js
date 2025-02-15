@@ -8,7 +8,9 @@ const EBookSaveForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
+    price: "",
     imageUrl: "",
+    imageFile: "",
     link: "",
     description: "",
     category: "",
@@ -18,13 +20,18 @@ const EBookSaveForm = () => {
     e.preventDefault();
     console.log("this is the form data", formData);
 
+    const formDataToSend = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
+
     try {
       const response = await fetch(`${url}/api/v1/posts/create`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -36,7 +43,9 @@ const EBookSaveForm = () => {
         setFormData({
           title: "",
           author: "",
+          price: "",
           imageUrl: "",
+          imageFile: "",
           link: "",
           description: "",
           category: "",
@@ -54,10 +63,10 @@ const EBookSaveForm = () => {
 
   function changeHandler(e) {
     setFormData((prev) => {
-      const { name, value } = e.target;
+      const { name, value, files } = e.target;
       return {
         ...prev,
-        [name]: value,
+        [name]: files ? files[0] : value,
       };
     });
   }
@@ -97,6 +106,17 @@ const EBookSaveForm = () => {
                       className=" border border-black rounded-sm h-10 px-2  "
                     />
                   </div>
+                  <div className="flex flex-col w-1/2">
+                    <p>Price</p>
+                    <input
+                      type="text"
+                      name="price"
+                      id="price"
+                      onChange={changeHandler}
+                      value={formData.price}
+                      className=" border border-black rounded-sm h-10 px-2  "
+                    />
+                  </div>
                 </div>
               </div>
               {/* -------------------------- */}
@@ -109,6 +129,18 @@ const EBookSaveForm = () => {
                   onChange={changeHandler}
                   value={formData.imageUrl}
                   className="border border-black rounded-sm h-10 px-2 "
+                />
+              </div>
+
+              {/*  */}
+              <div className="flex flex-col my-3 ">
+                <p>eBook ImageFile</p>
+                <input
+                  type="file"
+                  name="imageFile"
+                  id="imageFile"
+                  onChange={changeHandler}
+                  className="border border-black rounded-sm h-10 px-2 py-1"
                 />
               </div>
 

@@ -9,9 +9,13 @@ const AddReview = ({ id, name, setIsReview }) => {
   const [hover, setHover] = useState(0);
   const [rating, setRating] = useState(0);
   const [reviewData, setReviewData] = useState({
-    star: 0,
+    star: "",
     review: "",
   });
+
+  useEffect(() => {
+    console.log("this is the rating", reviewData);
+  }, [rating]);
 
   const { setLoading, loading } = useContext(LoadingContext);
 
@@ -21,16 +25,22 @@ const AddReview = ({ id, name, setIsReview }) => {
       return {
         ...prev,
         [name]: value,
+        star: rating,
       };
     });
   }
 
   async function SubmitHandler() {
+    const updatedReviewData = { ...reviewData, star: rating };
+
     const formData = new FormData();
     formData.append("id", id);
     formData.append("username", name);
-    formData.append("review", reviewData.review);
-    formData.append("stars", reviewData.star.toString());
+    // formData.append("review", reviewData.review);
+    formData.append("stars", updatedReviewData.star);
+    formData.append("review", updatedReviewData.review);
+
+    console.log("this is formData val", formData);
 
     try {
       setLoading(true);

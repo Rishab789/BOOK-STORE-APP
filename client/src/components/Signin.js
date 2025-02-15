@@ -46,6 +46,7 @@ export function Signin() {
           password: "",
         });
         toast.success(data.message);
+        console.log("this is data ", data);
         login(data.token);
 
         navigate("/");

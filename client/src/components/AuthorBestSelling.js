@@ -5,18 +5,20 @@ import Slider from "./Slider";
 const AuthorBestSelling = () => {
   return (
     <div>
-      <section className=" grid grid-cols-3    p-5 bg-red-400">
+      <section className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3    p-5 ">
         <div>
           <p className="font-bold text-xl">AUTHOR BEST SELLING</p>
 
-          <p className="rufina1 text-end text-7xl text-secondary-color mb-3">
+          <p className="rufina1 text-start lg:text-end text-3xl md:text-5xl lg:text-7xl text-secondary-color mb-3">
             J. K.
           </p>
-          <p className="rufina1 text-end text-7xl text-secondary-color mb-3">
+          <p className="rufina1 text-start lg:text-end text-3xl md:text-5xl lg:text-7xl text-secondary-color mb-3">
             Rowling
           </p>
-          <p className="uppercase text-end">categories:Books , Audiobooks</p>
-          <p className="rufina1 text-end">
+          <p className="uppercase text-start lg:text-end">
+            categories:Books , Audiobooks
+          </p>
+          <p className="rufina1 text-start lg:text-end">
             Vestibulum porttitor iaculis gravida. Praesent vestibulum varius
             placerat. Cras tempor congue neque, id aliquam orci finibus sit
             amet. Fusce at facilisis arcu. Donec aliquet nulla id turpis semper,

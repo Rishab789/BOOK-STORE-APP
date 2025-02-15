@@ -32,9 +32,9 @@ const Blog = () => {
   };
 
   return (
-    <div className="container relative bg-red-400">
+    <div className=" relative bg-red-400">
       <section className="pt-20">
-        <div className="text-2xl md:text-3xl font-bold text-center ">
+        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-center ">
           LATEST FROM OUR BLOGS
         </div>
         <div

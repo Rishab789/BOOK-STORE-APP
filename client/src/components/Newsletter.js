@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Newsletter.css";
 
 const Newsletter = () => {
+  const url = process.env.REACT_APP_URL;
+
+  const [email, setEmail] = useState("");
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setEmail(value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log("this is email coming", email);
+
+    try {
+      const response = await fetch(`${url}/api/v1/posts/getMail`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        // const result = await response.json();
+        alert("POST up successful");
+        // Handle successful signup
+        setEmail(email);
+      } else {
+        alert("POST up failed");
+        // Handle signup failure
+      }
+    } catch (e) {
+      console.error("Error:", e);
+      alert("An error occurred");
+    }
+  };
+
   return (
     <div className=" mt-10 relative">
       <section className="p-5">
@@ -26,12 +63,15 @@ const Newsletter = () => {
           </p>
           <form
             className="flex flex-col justify-center items-center"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={submitHandler}
           >
             <input
               type="text"
               placeholder="Enter your email address"
               className="mb-5 h-8 border  w-[100%] md:w-[31.25rem]"
+              name="email"
+              onChange={changeHandler}
+              value={email}
             />
             <button className="btn mb-5">SEND EMAIL</button>
           </form>
